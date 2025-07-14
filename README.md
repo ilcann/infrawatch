@@ -1,161 +1,119 @@
-# Turborepo starter
+# InfraWatch
 
-This Turborepo starter is maintained by the Turborepo core team.
+This project is a monorepo structure built using Turborepo. It's optimized for efficient development and build processes.
 
-## Using this example
+## 📦 What is Turborepo?
 
-Run the following command:
+Turborepo is a high-performance build system designed for JavaScript and TypeScript monorepos. It accelerates the development process with intelligent caching and parallel task execution.
 
-```sh
-npx create-turbo@latest
-```
+## 🏗️ Project Structure
 
-## What's inside?
+This monorepo includes the following packages and applications:
 
-This Turborepo includes the following packages/apps:
+### Applications
+- `apps/web`: Web application built with [Vite](https://vitejs.dev/) + [React](https://reactjs.org/)
 
-### Apps and Packages
+### Shared Packages
+- `@repo/ui`: React component library used by all applications
+- `@repo/eslint-config`: ESLint configurations (includes eslint-config-next and eslint-config-prettier)
+- `@repo/typescript-config`: TypeScript configurations used throughout the monorepo
 
-- `web`: a [Vite](https://vitejs.dev/) + [React](https://reactjs.org/) app
-- `@repo/ui`: a stub React component library shared by the `web` application
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+All packages and applications are written in 100% [TypeScript](https://www.typescriptlang.org/).
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🛠️ Utilities and Tools
 
-### Utilities
+This project uses the following tools:
 
-This Turborepo has some additional tools already setup for you:
+- **[TypeScript](https://www.typescriptlang.org/)**: Static type checking
+- **[ESLint](https://eslint.org/)**: Code quality and standards
+- **[Prettier](https://prettier.io)**: Code formatting
+- **[PNPM](https://pnpm.io)**: Fast and disk space efficient package manager
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## 🚀 Getting Started
 
-### Build
+### Installing Dependencies
 
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-### Install Dependencies
-
-To install all necessary dependencies for the monorepo and its apps, run the following command:
-
-```
+```bash
 # Install dependencies for the entire monorepo
 pnpm install
-
-# Install dependencies for specific apps
-cd apps/docs && pnpm install
-cd apps/web && pnpm install
 ```
 
-### Updated Turbo Tasks
+### Starting Development Environment
 
-The `turbo.json` file has been updated to include the following tasks:
+```bash
+# Start development server for all applications
+pnpm dev
 
-- **build**: Builds all apps and packages.
-- **dev**: Starts the development server for all apps.
-- **lint**: Runs linting for all apps and packages.
-- **check-types**: Checks TypeScript types for all apps and packages.
-- **start**: Starts the production server for all apps.
+# Or use turbo command
+turbo dev
 
-### App-Specific Scripts
+# Run only the web application
+turbo dev --filter=web
+```
 
-Each app (`docs` and `web`) has its own `package.json` with the following scripts:
+### Building
 
-- **dev**: Starts the development server.
-- **build**: Builds the app for production.
-- **start**: Starts the production server.
-- **lint**: Runs linting for the app.
-- **check-types**: Checks TypeScript types for the app.
+```bash
+# Build all applications and packages
+pnpm build
 
-## Useful Links
+# Or use turbo command
+turbo build
+
+# Build only a specific package
+turbo build --filter=web
+```
+
+### Starting Production
+
+```bash
+# Start production server after building
+pnpm start
+
+# Or use turbo command
+turbo start
+```
+
+## 🔧 Turbo Commands
+
+The project supports the following core turbo commands:
+
+- `turbo dev` - Starts development servers
+- `turbo build` - Creates production builds
+- `turbo start` - Starts production servers
+- `turbo lint` - Runs code quality checks
+- `turbo test` - Runs tests
+
+### Working with Specific Packages using Filtering
+
+```bash
+# For web application only
+turbo dev --filter=web
+turbo build --filter=web
+
+# For UI package
+turbo build --filter=@repo/ui
+```
+
+## ☁️ Remote Caching
+
+Turborepo uses [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) technology to share build caches between team members and CI/CD pipelines.
+
+### Setting up Remote Cache
+
+1. Login to your Vercel account:
+```bash
+turbo login
+```
+
+2. Link your project with Remote Cache:
+```bash
+turbo link
+```
+
+This significantly reduces build times and enables cache sharing among team members.
+
+## 📚 Useful Links
 
 Learn more about the power of Turborepo:
 
