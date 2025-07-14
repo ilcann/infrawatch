@@ -38,6 +38,20 @@ This project uses the following tools:
 pnpm install
 ```
 
+### Environment Setup
+
+Before starting the development environment, you need to set up your environment variables:
+
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit the .env file with your specific configuration
+# The .env.example file contains all available environment variables with example values
+```
+
+**Important**: The `.env` file contains sensitive information and should never be committed to version control. Always use `.env.example` as a template.
+
 ### Starting Development Environment
 
 ```bash
