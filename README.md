@@ -12,6 +12,7 @@ This monorepo includes the following packages and applications:
 
 ### Applications
 - `apps/web`: Web application built with [Vite](https://vitejs.dev/) + [React](https://reactjs.org/)
+- `apps/api`: Express.js API server with TypeScript
 
 ### Shared Packages
 - `@repo/ui`: React component library used by all applications
