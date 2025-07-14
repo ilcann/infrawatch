@@ -24,7 +24,7 @@
       "cache": false,
       "persistent": true
     },
-    "preview": {
+    "start": {
       "dependsOn": ["build"],
       "cache": false,
       "persistent": true

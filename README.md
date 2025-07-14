@@ -123,6 +123,39 @@ yarn exec turbo link
 pnpm exec turbo link
 ```
 
+### Install Dependencies
+
+To install all necessary dependencies for the monorepo and its apps, run the following command:
+
+```
+# Install dependencies for the entire monorepo
+pnpm install
+
+# Install dependencies for specific apps
+cd apps/docs && pnpm install
+cd apps/web && pnpm install
+```
+
+### Updated Turbo Tasks
+
+The `turbo.json` file has been updated to include the following tasks:
+
+- **build**: Builds all apps and packages.
+- **dev**: Starts the development server for all apps.
+- **lint**: Runs linting for all apps and packages.
+- **check-types**: Checks TypeScript types for all apps and packages.
+- **start**: Starts the production server for all apps.
+
+### App-Specific Scripts
+
+Each app (`docs` and `web`) has its own `package.json` with the following scripts:
+
+- **dev**: Starts the development server.
+- **build**: Builds the app for production.
+- **start**: Starts the production server.
+- **lint**: Runs linting for the app.
+- **check-types**: Checks TypeScript types for the app.
+
 ## Useful Links
 
 Learn more about the power of Turborepo:
