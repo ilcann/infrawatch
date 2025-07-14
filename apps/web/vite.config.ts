@@ -1,6 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const devPort = parseInt(process.env.DEV_PORT_WEB || '3000', 10);
+const prodPort = parseInt(process.env.PROD_PORT_WEB || '4000', 10);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,6 +15,9 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    port: 3000
+    port: devPort
+  },
+  preview: {
+    port: prodPort
   }
-})
+});
