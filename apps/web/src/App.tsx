@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router';
-import Navigation from './components/Navigation';
+import Sidebar from './components/Sidebar';
 import LandingPage from './pages/landing';
 import AuthPage from './pages/auth';
 import DashboardPage from './pages/dashboard';
@@ -8,8 +8,8 @@ import AdminPanelPage from './pages/admin-panel';
 
 function App() {
   return (
-      <div className="min-h-screen">
-        <Navigation />
+      <div className="min-h-screen flex flex-row">
+        <Sidebar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<AuthPage />} />
