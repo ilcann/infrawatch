@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "home": "Ana Sayfa",
+    "dashboard": "Gösterge Paneli",
+    "adminPanel": "Yönetici Paneli",
+    "assetManagement": "Varlık Yönetimi",
+    "auth": "Kimlik Doğrulama",
+    "logout": "Çıkış Yap"
+  }
+}

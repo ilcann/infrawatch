@@ -1,8 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 export default function AssetManagementPage() {
+  const { t } = useTranslation('asset-management');
+  
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold">Asset Management</h1>
-      <p>Manage your assets here.</p>
+      <h1 className="text-2xl font-bold">{t('title')}</h1>
+      <p>{t('description')}</p>
     </div>
   );
 }

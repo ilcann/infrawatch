@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "adminPanel": "Admin Panel",
+    "assetManagement": "Asset Management",
+    "auth": "Authentication",
+    "logout": "Logout"
+  }
+}
