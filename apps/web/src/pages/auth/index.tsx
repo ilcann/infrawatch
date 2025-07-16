@@ -6,10 +6,10 @@ export default function AuthPage() {
   return (
     <main className="p-8">
       <header>
-        <h1 className="text-2xl font-bold">{t('title')}</h1>
+        <h1 className="text-2xl font-bold text-white">{t('title')}</h1>
       </header>
       <section>
-        <p>{t('login')}</p>
+        <p className="text-white">{t('login')}</p>
       </section>
     </main>
   );
