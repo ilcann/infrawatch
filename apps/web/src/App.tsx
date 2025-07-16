@@ -8,7 +8,7 @@ import AdminPanelPage from './pages/admin-panel';
 
 function App() {
   return (
-      <div className="min-h-screen flex flex-row">
+      <div className="min-h-screen flex flex-row bg-neutral-900">
         <Sidebar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
