@@ -3,7 +3,8 @@ import {
   Package, 
   Users, 
   Settings, 
-  LogOut 
+  LogOut, 
+  Home
 } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router';
 import { useEffect, useState, useMemo } from 'react';
@@ -13,7 +14,8 @@ const Sidebar = () => {
   const [indicatorPosition, setIndicatorPosition] = useState(0);
 
   const navItems = useMemo(() => [
-    { path: '/overview', icon: <BarChart3 size={18} /> },
+    { path: '/overview', icon: <Home size={18} /> },
+    { path: '/insights', icon: <BarChart3 size={18} /> },
     { path: '/assets', icon: <Package size={18} /> },
     { path: '/members', icon: <Users size={18} /> }
   ], []);
@@ -28,10 +30,10 @@ const Sidebar = () => {
   return (
     <aside className="h-screen px-3 py-9">
       <div 
-        className="h-full flex flex-col rounded-full py-4 items-center shadow-[0_10px_25px_rgba(0,0,0,0.2)] bg-neutral-800"
+        className="h-full flex flex-col rounded-full py-4 items-center shadow-[0_10px_25px_rgba(0,0,0,0.2)] bg-neutral-800 justify-between overflow-y-hidden"
       >
         {/* Logo Section */}
-        <div className="flex justify-center px-2 mb-12">
+        <div className="flex justify-center px-2">
           <div 
             className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-lg border border-white/20"
             style={{ backdropFilter: 'blur(10px)' }}
@@ -41,26 +43,29 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation Section */}
-        <nav className="w-full flex-1 relative flex flex-col items-center">
-          <div 
-            className="absolute left-0 w-[0.1rem] bg-white rounded-r-sm transition-all duration-[400ms] ease-out h-10 top-0 z-0"
-            style={{ transform: `translateY(${indicatorPosition}px)` }}
-          ></div>
-          <div className="flex flex-col gap-4 relative z-10">
-            {navItems.map((item, index) => (
-              <NavLink 
-                key={index}
-                to={item.path} 
-                className={({ isActive }) => `
-                  w-10 h-10 flex items-center justify-center bg-transparent border-0 rounded-xl 
-                  transition-all duration-200 cursor-pointer no-underline relative
-                  ${isActive ? 'text-white' : 'text-gray-400 hover:text-gray-300'}
-                `}
-              >
-                {item.icon}
-              </NavLink>
-            ))}
+        <nav className="w-full flex-1 relative flex flex-col items-center justify-center">
+          <div className='relative w-full flex flex-col items-center'>
+            <div 
+              className="absolute right-0 w-[0.2rem] bg-amber-600 rounded-r-sm transition-all duration-[400ms] ease-out h-10 z-10 top-0"
+              style={{ transform: `translateY(${indicatorPosition}px)` }}
+            />
+            <div className="flex flex-col gap-4 relative z-20">
+              {navItems.map((item, index) => (
+                <NavLink 
+                  key={index}
+                  to={item.path} 
+                  className={({ isActive }) => `
+                    w-10 h-10 flex items-center justify-center bg-transparent border-0 rounded-xl 
+                    transition-all duration-200 cursor-pointer no-underline relative
+                    ${isActive ? 'text-amber-600' : 'text-gray-400 hover:text-gray-300'}
+                  `}
+                >
+                  {item.icon}
+                </NavLink>
+              ))}
+            </div>
           </div>
+
         </nav>
 
         {/* Bottom Section */}
