@@ -11,7 +11,8 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    port: devPort
+    port: devPort,
+    host: '0.0.0.0'
   },
   preview: {
     port: prodPort
