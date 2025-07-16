@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router';
+import { Routes, Route } from 'react-router';
 import Navigation from './components/Navigation';
 import LandingPage from './pages/landing';
 import AuthPage from './pages/auth';
@@ -8,8 +8,7 @@ import AdminPanelPage from './pages/admin-panel';
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen">
         <Navigation />
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -19,7 +18,6 @@ function App() {
           <Route path="/admin-panel" element={<AdminPanelPage />} />
         </Routes>
       </div>
-    </Router>
   );
 }
 
