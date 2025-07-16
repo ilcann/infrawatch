@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/ui/Sidebar';
 import LandingPage from './pages/landing';
 import AuthPage from './pages/auth';
 import DashboardPage from './pages/dashboard';
