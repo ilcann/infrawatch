@@ -14,10 +14,10 @@ const Sidebar = () => {
   const [indicatorPosition, setIndicatorPosition] = useState(0);
 
   const navItems = useMemo(() => [
-    { path: '/overview', icon: <Home size={18} /> },
+    { path: '/dashboard', icon: <Home size={18} /> },
     { path: '/insights', icon: <BarChart3 size={18} /> },
     { path: '/assets', icon: <Package size={18} /> },
-    { path: '/members', icon: <Users size={18} /> }
+    { path: '/team', icon: <Users size={18} /> }
   ], []);
 
   useEffect(() => {

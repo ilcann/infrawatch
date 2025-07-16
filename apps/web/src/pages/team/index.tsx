@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-export default function AdminPanelPage() {
-  const { t } = useTranslation('admin-panel');
+export default function TeamPage() {
+  const { t } = useTranslation('team');
 
   return (
     <main className="p-8">

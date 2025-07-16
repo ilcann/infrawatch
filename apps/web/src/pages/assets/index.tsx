@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-export default function DashboardPage() {
-  const { t } = useTranslation('dashboard');
+export default function AssetsPage() {
+  const { t } = useTranslation('assets');
 
   return (
     <main className="p-8">

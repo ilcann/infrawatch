@@ -3,8 +3,9 @@ import Sidebar from './components/ui/Sidebar';
 import LandingPage from './pages/landing';
 import AuthPage from './pages/auth';
 import DashboardPage from './pages/dashboard';
-import AssetManagementPage from './pages/asset-management';
-import AdminPanelPage from './pages/admin-panel';
+import AssetsPage from './pages/assets';
+import TeamPage from './pages/team';
+import InsightsPage from './pages/insights';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/asset-management" element={<AssetManagementPage />} />
-          <Route path="/admin-panel" element={<AdminPanelPage />} />
+          <Route path="/assets" element={<AssetsPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/insights" element={<InsightsPage />} />
         </Routes>
       </div>
   );
