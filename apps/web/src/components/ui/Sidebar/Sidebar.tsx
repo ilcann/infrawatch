@@ -2,19 +2,25 @@ import {
   BarChart3, 
   Package, 
   Users, 
-  Settings, 
   LogOut, 
   Home,
   PanelRight,
-  PanelLeft
+  PanelLeft,
+  MoreHorizontal,
+  Moon,
+  Sun,
+  Globe
 } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router';
 import { useEffect, useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Sidebar = () => {
   const location = useLocation();
+  const { i18n } = useTranslation();
   const [indicatorPosition, setIndicatorPosition] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const navItems = useMemo(() => [
     { path: '/dashboard', icon: <Home size={18} />, label: 'Dashboard' },
@@ -22,6 +28,16 @@ const Sidebar = () => {
     { path: '/assets', icon: <Package size={18} />, label: 'Assets' },
     { path: '/team', icon: <Users size={18} />, label: 'Team' }
   ], []);
+
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+    // Theme toggle logic here
+  };
+
+  const toggleLanguage = () => {
+    const newLanguage = i18n.language === 'en' ? 'tr' : 'en';
+    i18n.changeLanguage(newLanguage);
+  };
 
   useEffect(() => {
     if (!isExpanded) {
@@ -116,14 +132,38 @@ const Sidebar = () => {
 
         {/* Bottom Section */}
         <div className={`flex ${isExpanded ? 'flex-col gap-2 w-full px-2' : 'flex-col gap-2 items-center w-full'}`}>
-          {/* Settings Button */}
-          <button 
-            className={`${isExpanded ? 'w-full h-12 px-3 justify-start gap-3' : 'w-10 h-10 justify-center'} flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5`} 
-            title="Settings"
-          >
-            <Settings size={20} />
-            {isExpanded && <span className="text-sm font-medium">Settings</span>}
-          </button>
+          {isExpanded ? (
+            <>
+              {/* Theme Toggle Button */}
+              <button 
+                onClick={toggleTheme}
+                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5" 
+                title={isDarkTheme ? "Switch to Light Theme" : "Switch to Dark Theme"}
+              >
+                {isDarkTheme ? <Sun size={20} /> : <Moon size={20} />}
+                <span className="text-sm font-medium">{isDarkTheme ? 'Light' : 'Dark'}</span>
+              </button>
+              
+              {/* Language Toggle Button */}
+              <button 
+                onClick={toggleLanguage}
+                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5" 
+                title="Change Language"
+              >
+                <Globe size={20} />
+                <span className="text-sm font-medium">{i18n.language === 'en' ? 'English' : 'Türkçe'}</span>
+              </button>
+            </>
+          ) : (
+            /* Ellipsis Button (collapsed state) */
+            <button 
+              onClick={() => setIsExpanded(true)}
+              className="w-10 h-10 justify-center flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5" 
+              title="Expand sidebar"
+            >
+              <MoreHorizontal size={20} />
+            </button>
+          )}
           
           {/* Logout Button */}
           <button 
