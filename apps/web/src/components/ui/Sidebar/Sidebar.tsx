@@ -51,22 +51,22 @@ const Sidebar = () => {
   return (
     <aside className={`h-screen px-3 py-9 transition-all duration-300 ${isExpanded ? 'w-64' : 'w-20'}`}>
       <div 
-        className={`h-full flex flex-col py-4 shadow-[0_10px_25px_rgba(0,0,0,0.2)] bg-neutral-800 justify-between overflow-y-hidden transition-all duration-300 ${
+        className={`h-full flex flex-col py-4 shadow-[0_10px_25px_rgba(0,0,0,0.2)] bg-neutral-800 justify-between overflow-hidden transition-all duration-300 ${
           isExpanded ? 'rounded-2xl px-4' : 'rounded-2xl items-center'
         }`}
       >
         {/* Logo Section */}
-        <div className={`flex ${isExpanded ? 'justify-between items-center' : 'justify-center'} px-2`}>
+        <div className={`flex ${isExpanded ? 'justify-between items-center' : 'justify-center'} px-2 min-w-0`}>
           {isExpanded ? (
             <>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
                 <div 
                   className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-lg border border-white/20 flex-shrink-0"
                   style={{ backdropFilter: 'blur(10px)' }}
                 >
                   K
                 </div>
-                <span className="text-white font-semibold text-lg">Kannon</span>
+                <span className="text-white font-semibold text-lg truncate">Kannon</span>
               </div>
               <button
                 onClick={() => setIsExpanded(false)}
@@ -98,31 +98,36 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation Section */}
-        <nav className="w-full flex-1 relative flex flex-col items-center justify-center">
-          <div className={`relative w-full flex flex-col ${isExpanded ? 'items-stretch px-2' : 'items-center'}`}>
+        <nav className="w-full flex-1 relative flex flex-col items-center justify-center overflow-hidden">
+          <div className={`relative w-full flex flex-col items-center min-w-0`}>
             {!isExpanded && (
               <div 
                 className="absolute right-0 w-[0.2rem] bg-amber-600 rounded-r-sm transition-all duration-[400ms] ease-out h-10 z-10 top-0"
                 style={{ transform: `translateY(${indicatorPosition}px)` }}
               />
             )}
-            <div className={`flex flex-col gap-2 relative z-20 ${isExpanded ? 'w-full' : ''}`}>
+            <div className={`w-full flex flex-col gap-2 items-center min-w-0`}>
               {navItems.map((item, index) => (
                 <NavLink 
                   key={index}
                   to={item.path} 
                   className={({ isActive }) => `
-                    ${isExpanded ? 'w-full h-12 px-3' : 'w-10 h-10'} flex items-center ${isExpanded ? 'justify-start gap-3' : 'justify-center'} 
+                    flex flex-row items-center gap-2 min-w-0
                     bg-transparent border-0 rounded-xl transition-all duration-200 cursor-pointer no-underline relative
+                    ${isExpanded ? 'w-full h-10 px-3' : 'w-10 h-10 justify-center'} 
                     ${isActive 
                       ? (isExpanded ? 'text-amber-600 bg-amber-600/10' : 'text-amber-600') 
                       : 'text-gray-400 hover:text-gray-300 hover:bg-white/5'
                     }
                   `}
                 >
-                  <span className="flex-shrink-0">{item.icon}</span>
-                  {isExpanded && (
-                    <span className="text-sm font-medium">{item.label}</span>
+                  {!isExpanded ? (
+                    <span className="flex-shrink-0">{item.icon}</span>
+                  ) : (
+                    <>
+                      <span className="flex-shrink-0">{item.icon}</span>
+                      <span className="text-sm font-medium truncate">{item.label}</span>
+                    </>
                   )}
                 </NavLink>
               ))}
@@ -131,27 +136,27 @@ const Sidebar = () => {
         </nav>
 
         {/* Bottom Section */}
-        <div className={`flex ${isExpanded ? 'flex-col gap-2 w-full px-2' : 'flex-col gap-2 items-center w-full'}`}>
+        <div className={`flex ${isExpanded ? 'flex-col gap-2 w-full px-2' : 'flex-col gap-2 items-center w-full'} min-w-0`}>
           {isExpanded ? (
             <>
               {/* Theme Toggle Button */}
               <button 
                 onClick={toggleTheme}
-                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5" 
+                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5 min-w-0" 
                 title={isDarkTheme ? "Switch to Light Theme" : "Switch to Dark Theme"}
               >
-                {isDarkTheme ? <Sun size={20} /> : <Moon size={20} />}
-                <span className="text-sm font-medium">{isDarkTheme ? 'Light' : 'Dark'}</span>
+                {isDarkTheme ? <Sun size={20} className="flex-shrink-0" /> : <Moon size={20} className="flex-shrink-0" />}
+                <span className="text-sm font-medium truncate">{isDarkTheme ? 'Light' : 'Dark'}</span>
               </button>
               
               {/* Language Toggle Button */}
               <button 
                 onClick={toggleLanguage}
-                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5" 
+                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5 min-w-0" 
                 title="Change Language"
               >
-                <Globe size={20} />
-                <span className="text-sm font-medium">{i18n.language === 'en' ? 'English' : 'Türkçe'}</span>
+                <Globe size={20} className="flex-shrink-0" />
+                <span className="text-sm font-medium truncate">{i18n.language === 'en' ? 'English' : 'Türkçe'}</span>
               </button>
             </>
           ) : (
@@ -167,11 +172,11 @@ const Sidebar = () => {
           
           {/* Logout Button */}
           <button 
-            className={`${isExpanded ? 'w-full h-12 px-3 justify-start gap-3' : 'w-10 h-10 justify-center'} flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-red-300 hover:bg-red-500/10`} 
+            className={`${isExpanded ? 'w-full h-12 px-3 justify-start gap-3' : 'w-10 h-10 justify-center'} flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-red-300 hover:bg-red-500/10 min-w-0`} 
             title="Logout"
           >
-            <LogOut size={20} />
-            {isExpanded && <span className="text-sm font-medium">Logout</span>}
+            <LogOut size={20} className="flex-shrink-0" />
+            {isExpanded && <span className="text-sm font-medium truncate">Logout</span>}
           </button>
         </div>
       </div>
