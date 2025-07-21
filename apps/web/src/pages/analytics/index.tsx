@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-export default function InsightsPage() {
-  const { t } = useTranslation('insights');
+export default function AnalyticsPage() {
+  const { t } = useTranslation('analytics');
 
   return (
     <main className="p-8">

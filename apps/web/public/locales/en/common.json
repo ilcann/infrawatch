@@ -1,10 +1,24 @@
 {
   "navigation": {
-    "home": "Home",
     "dashboard": "Dashboard",
-    "adminPanel": "Admin Panel",
-    "assetManagement": "Asset Management",
-    "auth": "Authentication",
-    "logout": "Logout"
+    "analytics": "Analytics", 
+    "assets": "Assets",
+    "team": "Team"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "switchToLight": "Switch to Light Theme",
+    "switchToDark": "Switch to Dark Theme"
+  },
+  "language": {
+    "change": "Change Language",
+    "english": "English",
+    "turkish": "Türkçe"
+  },
+  "actions": {
+    "logout": "Logout",
+    "expandSidebar": "Expand sidebar",
+    "collapseSidebar": "Collapse sidebar"
   }
 }

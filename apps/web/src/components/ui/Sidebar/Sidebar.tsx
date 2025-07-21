@@ -17,17 +17,17 @@ import { useTranslation } from 'react-i18next';
 
 const Sidebar = () => {
   const location = useLocation();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation('common');
   const [indicatorPosition, setIndicatorPosition] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const navItems = useMemo(() => [
-    { path: '/dashboard', icon: <Home size={18} />, label: 'Dashboard' },
-    { path: '/insights', icon: <BarChart3 size={18} />, label: 'Insights' },
-    { path: '/assets', icon: <Package size={18} />, label: 'Assets' },
-    { path: '/team', icon: <Users size={18} />, label: 'Team' }
-  ], []);
+    { path: '/dashboard', icon: <Home size={18} />, label: t('navigation.dashboard') },
+    { path: '/analytics', icon: <BarChart3 size={18} />, label: t('navigation.analytics') },
+    { path: '/assets', icon: <Package size={18} />, label: t('navigation.assets') },
+    { path: '/team', icon: <Users size={18} />, label: t('navigation.team') }
+  ], [t]);
 
   const toggleTheme = () => {
     setIsDarkTheme(!isDarkTheme);
@@ -71,7 +71,7 @@ const Sidebar = () => {
               <button
                 onClick={() => setIsExpanded(false)}
                 className="w-10 h-10 flex items-center justify-center rounded-lg text-gray-400 transition-all duration-200 cursor-pointer hover:text-white hover:bg-white/20"
-                title="Collapse sidebar"
+                title={t('actions.collapseSidebar')}
               >
                 <PanelLeft size={16} />
               </button>
@@ -82,14 +82,14 @@ const Sidebar = () => {
                 className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white font-bold text-lg border border-white/20 cursor-pointer transition-all duration-200 group-hover:opacity-0"
                 style={{ backdropFilter: 'blur(10px)' }}
                 onClick={() => setIsExpanded(true)}
-                title="Expand sidebar"
+                title={t('actions.expandSidebar')}
               >
                 K
               </div>
               <button
                 onClick={() => setIsExpanded(true)}
                 className="absolute inset-0 w-10 h-10 flex items-center justify-center rounded-lg text-gray-400 transition-all duration-200 cursor-pointer hover:text-white hover:bg-white/20 opacity-0 group-hover:opacity-100"
-                title="Expand sidebar"
+                title={t('actions.expandSidebar')}
               >
                 <PanelRight size={16} />
               </button>
@@ -143,20 +143,20 @@ const Sidebar = () => {
               <button 
                 onClick={toggleTheme}
                 className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5 min-w-0" 
-                title={isDarkTheme ? "Switch to Light Theme" : "Switch to Dark Theme"}
+                title={isDarkTheme ? t('theme.switchToLight') : t('theme.switchToDark')}
               >
                 {isDarkTheme ? <Sun size={20} className="flex-shrink-0" /> : <Moon size={20} className="flex-shrink-0" />}
-                <span className="text-sm font-medium truncate">{isDarkTheme ? 'Light' : 'Dark'}</span>
+                <span className="text-sm font-medium truncate">{isDarkTheme ? t('theme.light') : t('theme.dark')}</span>
               </button>
               
               {/* Language Toggle Button */}
               <button 
                 onClick={toggleLanguage}
                 className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5 min-w-0" 
-                title="Change Language"
+                title={t('language.change')}
               >
                 <Globe size={20} className="flex-shrink-0" />
-                <span className="text-sm font-medium truncate">{i18n.language === 'en' ? 'English' : 'Türkçe'}</span>
+                <span className="text-sm font-medium truncate">{i18n.language === 'en' ? t('language.english') : t('language.turkish')}</span>
               </button>
             </>
           ) : (
@@ -164,7 +164,7 @@ const Sidebar = () => {
             <button 
               onClick={() => setIsExpanded(true)}
               className="w-10 h-10 justify-center flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-300 hover:bg-white/5" 
-              title="Expand sidebar"
+              title={t('actions.expandSidebar')}
             >
               <MoreHorizontal size={20} />
             </button>
@@ -173,10 +173,10 @@ const Sidebar = () => {
           {/* Logout Button */}
           <button 
             className={`${isExpanded ? 'w-full h-12 px-3 justify-start gap-3' : 'w-10 h-10 justify-center'} flex items-center bg-transparent border-0 rounded-xl text-gray-400 transition-all duration-200 cursor-pointer hover:text-red-300 hover:bg-red-500/10 min-w-0`} 
-            title="Logout"
+            title={t('actions.logout')}
           >
             <LogOut size={20} className="flex-shrink-0" />
-            {isExpanded && <span className="text-sm font-medium truncate">Logout</span>}
+            {isExpanded && <span className="text-sm font-medium truncate">{t('actions.logout')}</span>}
           </button>
         </div>
       </div>

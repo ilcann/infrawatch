@@ -5,7 +5,7 @@ import AuthPage from './pages/auth';
 import DashboardPage from './pages/dashboard';
 import AssetsPage from './pages/assets';
 import TeamPage from './pages/team';
-import InsightsPage from './pages/insights';
+import AnalyticsPage from './pages/analytics';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/assets" element={<AssetsPage />} />
           <Route path="/team" element={<TeamPage />} />
-          <Route path="/insights" element={<InsightsPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
         </Routes>
       </div>
   );
