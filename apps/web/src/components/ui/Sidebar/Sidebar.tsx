@@ -14,8 +14,10 @@ import {
 import { NavLink, useLocation } from 'react-router';
 import { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../../contexts/theme/theme-provider';
 
 const Sidebar = () => {
+  const { theme, setTheme } = useTheme()
   const location = useLocation();
   const { i18n, t } = useTranslation('common');
   const [indicatorPosition, setIndicatorPosition] = useState(0);
@@ -30,8 +32,13 @@ const Sidebar = () => {
   ], [t]);
 
   const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-    // Theme toggle logic here
+    if( theme === 'dark' ) {
+      setTheme('light');
+      setIsDarkTheme(false);
+    } else {
+      setTheme('dark');
+      setIsDarkTheme(true);
+    }
   };
 
   const toggleLanguage = () => {
