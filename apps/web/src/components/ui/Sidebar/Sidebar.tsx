@@ -55,7 +55,7 @@ const Sidebar = () => {
   return (
     <aside className={`h-screen px-3 py-9 transition-all duration-300 ${isExpanded ? 'w-64' : 'w-20'}`}>
       <div 
-        className={`h-full flex flex-col py-4 shadow-[0_10px_25px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_25px_rgba(0,0,0,0.2)] bg-gray-100 dark:bg-neutral-800 justify-between overflow-hidden transition-all duration-300 ${
+        className={`h-full flex flex-col py-4 shadow-[0_10px_25px_rgba(0,0,0,0.1)] dark:shadow-[0_10px_25px_rgba(0,0,0,0.2)] bg-gray-100 dark:bg-neutral-800 border border-gray-300/60 dark:border-transparent justify-between overflow-hidden transition-all duration-300 ${
           isExpanded ? 'rounded-2xl px-4' : 'rounded-2xl items-center'
         }`}
       >
@@ -74,7 +74,7 @@ const Sidebar = () => {
               </div>
               <button
                 onClick={() => setIsExpanded(false)}
-                className="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-white/20"
+                className="w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-white hover:bg-gray-300/70 dark:hover:bg-white/20"
                 title={t('actions.collapseSidebar')}
               >
                 <PanelLeft size={16} />
@@ -92,7 +92,7 @@ const Sidebar = () => {
               </div>
               <button
                 onClick={() => setIsExpanded(true)}
-                className="absolute inset-0 w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-white hover:bg-gray-200/50 dark:hover:bg-white/20 opacity-0 group-hover:opacity-100"
+                className="absolute inset-0 w-10 h-10 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-white hover:bg-gray-300/70 dark:hover:bg-white/20 opacity-0 group-hover:opacity-100"
                 title={t('actions.expandSidebar')}
               >
                 <PanelRight size={16} />
@@ -121,7 +121,7 @@ const Sidebar = () => {
                     ${isExpanded ? 'w-full h-10 px-3' : 'w-10 h-10 justify-center'} 
                     ${isActive 
                       ? (isExpanded ? 'text-amber-600 bg-amber-600/10' : 'text-amber-600') 
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-200/30 dark:hover:bg-white/5'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-white/5'
                     }
                   `}
                 >
@@ -146,7 +146,7 @@ const Sidebar = () => {
               {/* Theme Toggle Button */}
               <button 
                 onClick={toggleTheme}
-                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-200/30 dark:hover:bg-white/5 min-w-0" 
+                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-white/5 min-w-0" 
                 title={theme === 'dark' ? t('theme.switchToLight') : t('theme.switchToDark')}
               >
                 {theme === 'dark' ? <Moon size={20} className="flex-shrink-0" /> : <Sun size={20} className="flex-shrink-0" />}
@@ -156,7 +156,7 @@ const Sidebar = () => {
               {/* Language Toggle Button */}
               <button 
                 onClick={toggleLanguage}
-                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-200/30 dark:hover:bg-white/5 min-w-0" 
+                className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-white/5 min-w-0" 
                 title={t('language.change')}
               >
                 <Globe size={20} className="flex-shrink-0" />
@@ -167,7 +167,7 @@ const Sidebar = () => {
             /* Ellipsis Button (collapsed state) */
             <button 
               onClick={() => setIsExpanded(true)}
-              className="w-10 h-10 justify-center flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-200/30 dark:hover:bg-white/5" 
+              className="w-10 h-10 justify-center flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-300/50 dark:hover:bg-white/5" 
               title={t('actions.expandSidebar')}
             >
               <MoreHorizontal size={20} />
@@ -176,7 +176,7 @@ const Sidebar = () => {
           
           {/* Logout Button */}
           <button 
-            className={`${isExpanded ? 'w-full h-12 px-3 justify-start gap-3' : 'w-10 h-10 justify-center'} flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-red-400 hover:bg-red-100/30 dark:hover:bg-red-500/10 min-w-0`} 
+            className={`${isExpanded ? 'w-full h-12 px-3 justify-start gap-3' : 'w-10 h-10 justify-center'} flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-red-500 hover:bg-red-100/50 dark:hover:text-red-400 dark:hover:bg-red-500/10 min-w-0`} 
             title={t('actions.logout')}
           >
             <LogOut size={20} className="flex-shrink-0" />
