@@ -17,12 +17,11 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../../contexts/theme/theme-provider';
 
 const Sidebar = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
   const location = useLocation();
   const { i18n, t } = useTranslation('common');
   const [indicatorPosition, setIndicatorPosition] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const navItems = useMemo(() => [
     { path: '/dashboard', icon: <Home size={18} />, label: t('navigation.dashboard') },
@@ -34,10 +33,8 @@ const Sidebar = () => {
   const toggleTheme = () => {
     if( theme === 'dark' ) {
       setTheme('light');
-      setIsDarkTheme(false);
     } else {
       setTheme('dark');
-      setIsDarkTheme(true);
     }
   };
 
@@ -150,10 +147,10 @@ const Sidebar = () => {
               <button 
                 onClick={toggleTheme}
                 className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-200/30 dark:hover:bg-white/5 min-w-0" 
-                title={isDarkTheme ? t('theme.switchToLight') : t('theme.switchToDark')}
+                title={theme === 'dark' ? t('theme.switchToLight') : t('theme.switchToDark')}
               >
-                {isDarkTheme ? <Sun size={20} className="flex-shrink-0" /> : <Moon size={20} className="flex-shrink-0" />}
-                <span className="text-sm font-medium truncate">{isDarkTheme ? t('theme.light') : t('theme.dark')}</span>
+                {theme === 'dark' ? <Sun size={20} className="flex-shrink-0" /> : <Moon size={20} className="flex-shrink-0" />}
+                <span className="text-sm font-medium truncate">{theme === 'dark' ? t('theme.light') : t('theme.dark')}</span>
               </button>
               
               {/* Language Toggle Button */}
