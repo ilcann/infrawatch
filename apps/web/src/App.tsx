@@ -9,7 +9,7 @@ import AnalyticsPage from './pages/analytics';
 
 function App() {
   return (
-      <div className="min-h-screen flex flex-row bg-neutral-900 dark:bg-amber-50">
+      <div className="min-h-screen flex flex-row bg-gray-50 dark:bg-neutral-900">
         <Sidebar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
