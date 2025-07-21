@@ -149,8 +149,8 @@ const Sidebar = () => {
                 className="w-full h-12 px-3 justify-start gap-3 flex items-center bg-transparent border-0 rounded-xl text-gray-600 dark:text-gray-400 transition-all duration-200 cursor-pointer hover:text-gray-800 dark:hover:text-gray-300 hover:bg-gray-200/30 dark:hover:bg-white/5 min-w-0" 
                 title={theme === 'dark' ? t('theme.switchToLight') : t('theme.switchToDark')}
               >
-                {theme === 'dark' ? <Sun size={20} className="flex-shrink-0" /> : <Moon size={20} className="flex-shrink-0" />}
-                <span className="text-sm font-medium truncate">{theme === 'dark' ? t('theme.light') : t('theme.dark')}</span>
+                {theme === 'dark' ? <Moon size={20} className="flex-shrink-0" /> : <Sun size={20} className="flex-shrink-0" />}
+                <span className="text-sm font-medium truncate">{theme === 'dark' ? t('theme.dark') : t('theme.light')}</span>
               </button>
               
               {/* Language Toggle Button */}
