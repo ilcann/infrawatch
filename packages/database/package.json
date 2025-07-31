@@ -1,21 +1,18 @@
 {
-  "name": "@repo/db",
-  "version": "1.0.0",
+  "name": "@repo/database",
+  "version": "0.0.0",
   "scripts": {
-    "generate": "prisma generate",
-    "migrate": "prisma migrate dev --skip-generate",
-    "migrate:deploy": "prisma migrate deploy",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --skip-generate",
-    "db:migrate:deploy": "prisma migrate deploy"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.13.0"
+    "db:deploy": "prisma migrate deploy"
   },
   "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^20.19.9",
     "prisma": "^6.13.0"
   },
-  "exports": {
-    ".": "./src/index.ts"
+  "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "@prisma/extension-accelerate": "^2.0.2"
   }
 }
