@@ -37,6 +37,7 @@
     },
     "db:migrate": {
       "cache": false,
+      "persistent": true,
       "inputs": ["packages/db/prisma/migrations/**"]
     },
     "db:migrate:deploy": {
