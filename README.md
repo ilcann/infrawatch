@@ -16,6 +16,7 @@ This monorepo includes the following packages and applications:
 
 ### Shared Packages
 - `@repo/ui`: React component library used by all applications
+- `@repo/db`: Database package with Prisma ORM and type definitions
 - `@repo/eslint-config`: ESLint configurations (includes eslint-config-next and eslint-config-prettier)
 - `@repo/typescript-config`: TypeScript configurations used throughout the monorepo
 
@@ -29,6 +30,7 @@ This project uses the following tools:
 - **[ESLint](https://eslint.org/)**: Code quality and standards
 - **[Prettier](https://prettier.io)**: Code formatting
 - **[PNPM](https://pnpm.io)**: Fast and disk space efficient package manager
+- **[Prisma](https://www.prisma.io/)**: Type-safe database ORM with PostgreSQL
 
 ## 🚀 Getting Started
 
@@ -52,6 +54,32 @@ cp .env.example .env
 ```
 
 **Important**: The `.env` file contains sensitive information and should never be committed to version control. Always use `.env.example` as a template.
+
+#### Database Configuration
+
+The project uses PostgreSQL with Prisma ORM. Add the following to your `.env` file:
+
+```bash
+# Database
+DATABASE_URL="postgresql://username:password@localhost:5432/infrawatch?schema=public"
+```
+
+Replace `username`, `password`, and database name with your PostgreSQL credentials.
+
+### Database Setup
+
+After setting up your environment variables:
+
+```bash
+# Generate Prisma client
+pnpm db:generate
+
+# Run database migrations
+pnpm db:migrate
+
+# For production deployment
+pnpm db:migrate:deploy
+```
 
 ### Starting Development Environment
 
@@ -93,11 +121,17 @@ turbo start
 
 The project supports the following core turbo commands:
 
-- `turbo dev` - Starts development servers
-- `turbo build` - Creates production builds
+- `turbo dev` - Starts development servers (automatically generates Prisma client)
+- `turbo build` - Creates production builds (includes Prisma client generation)
 - `turbo start` - Starts production servers
 - `turbo lint` - Runs code quality checks
 - `turbo test` - Runs tests
+
+### Database Commands
+
+- `pnpm db:generate` - Generate Prisma client from schema
+- `pnpm db:migrate` - Create and apply database migrations
+- `pnpm db:migrate:deploy` - Deploy migrations to production
 
 ### Working with Specific Packages using Filtering
 
@@ -237,6 +271,117 @@ turbo link
 ```
 
 This significantly reduces build times and enables cache sharing among team members.
+
+## 🗄️ Database Management with Prisma
+
+This project uses Prisma as the ORM with PostgreSQL database. Here's how to work with the database:
+
+### Using Database Models
+
+All Prisma models are automatically exported from `@repo/db`:
+
+```typescript
+// Import types and prisma client
+import type { User, Post, Comment } from '@repo/db';
+import { prisma } from '@repo/db';
+
+// Create a user
+const user = await prisma.user.create({
+  data: {
+    name: "John Doe",
+    email: "john@example.com"
+  }
+});
+
+// Find users
+const users = await prisma.user.findMany();
+const user = await prisma.user.findUnique({
+  where: { email: "john@example.com" }
+});
+```
+
+### Adding New Models
+
+1. **Edit the schema** in `packages/db/prisma/schema.prisma`:
+
+```prisma
+model Post {
+  id        String   @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  posts     Post[]   // Add relation
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+2. **Generate migration**:
+
+```bash
+pnpm db:migrate
+# This will prompt you to name your migration
+```
+
+3. **Generate Prisma client**:
+
+```bash
+pnpm db:generate
+# Or just run `pnpm dev` - it's automatic!
+```
+
+4. **Use in your apps**:
+
+```typescript
+import type { Post, User } from '@repo/db';
+import { prisma } from '@repo/db';
+
+// Now you can use the new Post model
+const post = await prisma.post.create({
+  data: {
+    title: "My First Post",
+    content: "Hello World!",
+    authorId: user.id
+  }
+});
+```
+
+### Turbo Integration
+
+The project is configured so that:
+
+- **Development (`pnpm dev`)**: Automatically generates Prisma client before starting
+- **Build (`pnpm build`)**: Ensures Prisma client is generated before building apps
+- **Database changes**: Run `pnpm db:generate` or restart dev server
+
+### Environment Variables
+
+Required in your `.env` file:
+
+```bash
+# PostgreSQL connection string
+DATABASE_URL="postgresql://username:password@localhost:5432/infrawatch?schema=public"
+
+# Example for different environments:
+# Local: postgresql://postgres:password@localhost:5432/infrawatch_dev
+# Production: postgresql://user:pass@host:5432/infrawatch_prod
+```
+
+### Migration Workflow
+
+1. **Development**: Use `pnpm db:migrate` for schema changes
+2. **Production**: Use `pnpm db:migrate:deploy` for deployment
+3. **Reset database**: `npx prisma migrate reset` (⚠️ This deletes all data!)
 
 ## 📚 Useful Links
 

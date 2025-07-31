@@ -3,7 +3,7 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^db:generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [
         ".next/**", 
@@ -21,6 +21,7 @@
       "inputs": ["$TURBO_DEFAULT$", "tsconfig*.json"]
     },
     "dev": {
+      "dependsOn": ["^db:generate"],
       "cache": false,
       "persistent": true,
       "env": ["NODE_ENV=development"]
@@ -30,6 +31,18 @@
       "cache": false,
       "persistent": true,
       "env": ["NODE_ENV=production"]
+    },
+    "db:generate": {
+      "cache": false,
+      "inputs": ["packages/db/prisma/schema.prisma"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "persistent": true,
+      "inputs": ["packages/db/prisma/migrations/**"]
+    },
+    "db:migrate:deploy": {
+      "cache": false
     }
   }
 }
