@@ -30,6 +30,17 @@
       "cache": false,
       "persistent": true,
       "env": ["NODE_ENV=production"]
+    },
+    "db:generate": {
+      "cache": false,
+      "inputs": ["packages/db/prisma/schema.prisma"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "inputs": ["packages/db/prisma/migrations/**"]
+    },
+    "db:migrate:deploy": {
+      "cache": false
     }
   }
 }
