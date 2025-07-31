@@ -14,6 +14,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 // ==== User Roles, Registration Status, and User Model ====
 enum Role {
   ADMIN
@@ -36,4 +42,17 @@ model User {
   registerStatus RegisterStatus @default(PENDING)
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
+
+  registrationRequest RegistrationRequest?
+  @@map("users")
+}
+
+model RegistrationRequest {
+  id        String         @id @default(cuid())
+  userId    String         @unique
+  user      User           @relation(fields: [userId], references: [id])
+  status    RequestStatus  @default(PENDING)
+  createdAt DateTime       @default(now())
+
+  @@map("registration_requests")
 }
