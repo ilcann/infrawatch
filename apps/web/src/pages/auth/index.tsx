@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import type { User } from '@repo/db';
 
 export default function AuthPage() {
   const { t } = useTranslation('auth');
