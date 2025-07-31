@@ -66,6 +66,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       dotenv:
         specifier: ^17.2.0
         version: 17.2.0
@@ -148,6 +154,7 @@ importers:
       '@prisma/client':
         specifier: ^6.13.0
         version: 6.13.0(prisma@6.13.0(typescript@5.8.3))(typescript@5.8.3)
+    devDependencies:
       prisma:
         specifier: ^6.13.0
         version: 6.13.0(typescript@5.8.3)

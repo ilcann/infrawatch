@@ -11,6 +11,8 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/db": "workspace:*",
+    "@repo/ui": "workspace:*",
     "dotenv": "^17.2.0",
     "i18next": "^25.3.2",
     "i18next-browser-languagedetector": "^8.2.0",
