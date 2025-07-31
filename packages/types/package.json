@@ -4,7 +4,7 @@
     "description": "Shared TypeScript types for the repository",
     "scripts": {
         "build": "tsc",
-        "dev": "tsx -w",
+        "dev": "tsx watch src",
         "lint": "eslint . --ext .ts"
     },
     "exports": {
